@@ -27,4 +27,4 @@
 - [ ] vehicles
 - [ ] rent
 - [ ] morgtage
-  
+- [ ] debt
