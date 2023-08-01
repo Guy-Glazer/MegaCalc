@@ -1,16 +1,22 @@
 - [Task List](#task-list)
   - [Investment](#investment)
+  - [Mortgage](#mortgage)
   - [Wage](#wage)
   - [Income/Expanses](#incomeexpanses)
-
 
 
 # Task List
 
 ## Investment
 - [ ] Implement logic for real estate investment
-- [ ] current intrest
+- [ ] current interest
 - [ ] down payment
+- [ ] 
+
+## Mortgage
+- [ ] Hello
+- [ ] Don't
+- [ ] Run
 
 
 
@@ -19,6 +25,7 @@
 - [ ] tax modifiers
 - [ ] name
 - [ ] age
+- [ ] 
 
 
 ## Income/Expanses
@@ -26,5 +33,7 @@
 - [ ] electricity
 - [ ] vehicles
 - [ ] rent
-- [ ] morgtage
+- [ ] mortgage
 - [ ] debt
+- [ ] 
+
