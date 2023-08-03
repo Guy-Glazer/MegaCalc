@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Saving Calculator</title>
+</head>
+<body>
+    <h1>Saving Calculator</h1>
+    <form action="/calculate" method="post">
+        <label for="yearly_interest">Yearly interest rate (%):</label>
+        <input type="text" id="yearly_interest" name="yearly_interest" required><br>
+
+        <label for="deposit_amount">Deposit amount:</label>
+        <input type="text" id="deposit_amount" name="deposit_amount" required><br>
+
+        <label for="total_days">Total number of days:</label>
+        <input type="text" id="total_days" name="total_days" required><br>
+
+        <label for="withdrawal_days">Number of days until withdrawal possibility:</label>
+        <input type="text" id="withdrawal_days" name="withdrawal_days" required><br>
+
+        <input type="submit" value="Calculate">
+    </form>
+
+    <h2>Total interest accumulated:</h2>
+    <p>{{ result }}</p>
+</body>
+</html>
