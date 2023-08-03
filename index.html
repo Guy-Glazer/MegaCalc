@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Develeap 19th DevOps BootCamp</title>
+    <title>Interest Calculator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
     <style>
@@ -82,36 +82,54 @@
 <body>
     <div class="calculator-form">
         <h2>Saving Calculator</h2>
-        <form action="/calculate" method="post">
+        <form id="calculator-form" action="/" method="post">
             <div style="display: flex; gap: 20px;">
                 <div style="flex: 1;">
                     <label for="yearly_interest">Yearly interest</label>
                     <input type="text" id="yearly_interest" name="yearly_interest" required>
                 </div>
                 <div style="flex: 1;">
-                    <label for="total_days">Total days</label>
+                    <label for="total_days">Deposit days</label>
                     <input type="text" id="total_days" name="total_days" required>
-                </div>
-                <div style="flex: 1;">
-                    <label for="withdrawal_days">Withdrawal Days</label>
-                    <input type="text" id="withdrawal_days" name="withdrawal_days" required>
                 </div>
             </div>
 
             <label for="deposit_amount">Deposit amount</label>
             <input type="text" id="deposit_amount" name="deposit_amount" required>
 
-            <input type="submit" value="Calculate">
+            <input type="submit" value="calculate">
         </form>
-        {% if result %}
-        <div class="result">
-            <h3>Total interest accumulated:</h3>
-            <p>{{ result }}</p>
+        <br>
+        <div id="result-container">
+            <label for="result-value">Total interest accumulated:</label>
+            <input type="text" id="result-value" readonly>
         </div>
-        {% endif %}
     </div>
     <div class="footer">
         <p>Made by Erebus</p>
     </div>
+
+    <script>
+        document.getElementById("calculator-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            fetch('/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result !== undefined) {
+                    const resultContainer = document.getElementById("result-value");
+                    resultContainer.value = data.result.toFixed(2);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
+
+
+
 </html>

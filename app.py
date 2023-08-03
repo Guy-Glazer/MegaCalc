@@ -1,27 +1,24 @@
-from flask import Flask, render_template, request
-from interest_calculator import calculate_interest
-import os
+from flask import Flask, render_template, request, jsonify
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='')
 
-# Explicitly specify the template folder
-template_dir = os.path.abspath('./')  # Assuming index.html is in the same directory as app.py
-app = Flask(__name__, template_folder=template_dir)
-
-@app.route("/", methods=["GET", "POST"])
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    result = None
+    if request.method == 'POST':
+        yearly_interest = float(request.form['yearly_interest'])
+        total_days = int(request.form['total_days'])
+        deposit_amount = float(request.form['deposit_amount'])
+        
+        result = calculate_interest(yearly_interest, total_days, deposit_amount)
+        return jsonify({'result': result})
 
-    if request.method == "POST":
-        yearly_interest = float(request.form["yearly_interest"]) / 100
-        deposit_amount = float(request.form["deposit_amount"])
-        total_days = int(request.form["total_days"])
-        withdrawal_days = int(request.form["withdrawal_days"])
+    return render_template('index.html')
 
-        total_interest = calculate_interest(yearly_interest, deposit_amount, total_days, withdrawal_days)
-        result = f"{total_interest:.2f}"
+def calculate_interest(yearly_interest, total_days, deposit_amount):
+    daily_interest_rate = yearly_interest / 365 / 100
 
-    return render_template("index.html", result=result)
+    total_interest = deposit_amount * daily_interest_rate * total_days
 
-if __name__ == "__main__":
+    return total_interest
+if __name__ == '__main__':
     app.run(debug=True)
