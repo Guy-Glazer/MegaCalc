@@ -1,7 +1,12 @@
 from flask import Flask, render_template, request
 from interest_calculator import calculate_interest
+import os
 
 app = Flask(__name__)
+
+# Explicitly specify the template folder
+template_dir = os.path.abspath('./')  # Assuming index.html is in the same directory as app.py
+app = Flask(__name__, template_folder=template_dir)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
